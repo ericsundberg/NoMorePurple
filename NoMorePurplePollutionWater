@@ -1,0 +1,41 @@
+// This is written in C#
+
+using System;
+using System.IO;
+using System.Reflection;
+using ICities;
+using UnityEngine;
+
+/*
+* Standard mod declaration.  Check the cities sklyines wiki for more information.
+*/
+namespace ModClass 
+{
+
+    public class ModClass : IUserMod 
+    {
+
+        public string Name 
+        {
+            get { return "Enter name of the mod here"; }
+        }
+
+        public string Description 
+        {
+            get { return "Enter description of the mod here"; }
+        }
+    }
+
+  // Load extension
+	public class LoadingExtension : LoadingExtensionBase
+	{
+		/*
+		* When the level is loaded replace the existing value with the new one we assigned
+		*/
+		public override void OnLevelLoaded (LoadMode mode)
+		{
+		  /* The value m_WaterColorDirty is accessed through a getter titled _WaterColorDirty */
+			Shader.SetGlobalColor("_WaterColorDirty", new Vector4(0f, 0f, 0f));	// R, G, B
+		}
+	}
+}
